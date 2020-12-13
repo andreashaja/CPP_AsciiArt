@@ -3,40 +3,46 @@
 #include <string>
 using namespace std;
 
-int main () 
+int main()
 {
   // Text aus Datei einlesen (Anzahl Zeilen und Spalten, Text)
   int num_rows{0}, num_cols{0}, num_chars{0};
   int cnt_lines{0};
   string line, text_1d;
 
-  fstream input_stream("ascii-art-0.txt", fstream::in);
-  while( getline ( input_stream, line ) )
+  fstream input_stream("ascii-art-1-1d.txt", fstream::in);
+  if (!input_stream.is_open())
   {
-      // aktuelle Zeile
-      if(cnt_lines==0) // Anzahl Zeilen
-      {
-        num_rows = stoi(line);
-      }
-      else if (cnt_lines==1) // Anzahl Spalten
-      {
-        num_cols = stoi(line);
-      }
-      else if(cnt_lines==2) // Zeichen
-      {
-        text_1d = line;
-      }
-      else // Fehler: Datei enthält zu viele Zeilen
-      {
-        cout << "Fehler im Dateiformat: Zu viele Zeilen (erwartet wurden 3)!" << endl;
-        return 1;
-      }
+    cout << "Fehler : Datei konnte nicht geöffnet werden" << endl;
+    return 1;
+  }
 
-      ++cnt_lines;
+  while (getline(input_stream, line))
+  {
+    // aktuelle Zeile
+    if (cnt_lines == 0) // Anzahl Zeilen
+    {
+      num_rows = stoi(line);
+    }
+    else if (cnt_lines == 1) // Anzahl Spalten
+    {
+      num_cols = stoi(line);
+    }
+    else if (cnt_lines == 2) // Zeichen
+    {
+      text_1d = line;
+    }
+    else // Fehler: Datei enthält zu viele Zeilen
+    {
+      cout << "Fehler im Dateiformat: Zu viele Zeilen (erwartet wurden 3)!" << endl;
+      return 1;
+    }
+
+    ++cnt_lines;
   }
 
   // Eingelesene Daten auf Fehler prüfen
-  if(num_rows==0 || num_cols==0 || text_1d.length()==0)
+  if (num_rows == 0 || num_cols == 0 || text_1d.length() == 0)
   {
     cout << "Fehler in Eingabedaten, bitte Datei überprüfen" << endl;
     return 1;
@@ -45,10 +51,10 @@ int main ()
   // Text in 2D-Array "einsortieren"
   char text_2d[num_rows][num_cols];
   int cnt_chars{0};
-  while(cnt_chars<text_1d.length())
+  while (cnt_chars < text_1d.length())
   {
-    int curr_row = cnt_chars / num_rows;
-    int curr_col = cnt_chars % num_rows;
+    int curr_row = cnt_chars / num_cols;
+    int curr_col = cnt_chars % num_cols;
     //cout << "row = " << curr_row << ", col = " << curr_col << ", char = " << text_1d[cnt_chars] << endl;
     text_2d[curr_row][curr_col] = text_1d[cnt_chars];
     ++cnt_chars;
@@ -56,20 +62,29 @@ int main ()
 
   // Bild auf der Konsole ausgeben
   int cnt_rows{0};
-  while(cnt_rows<num_rows)
+  while (cnt_rows < num_rows)
   {
     int cnt_cols{0};
-    while(cnt_cols<num_cols)
+    while (cnt_cols < num_cols)
     {
-      cout << text_2d[cnt_rows][cnt_cols];
+      // Bild normal ausgeben
+      //cout << text_2d[cnt_rows][cnt_cols];
+
+      // Bild horizontal gespiegelt darstellen (if-else)
+      //cout << text_2d[cnt_rows][num_cols-cnt_cols];
+
+      // Bild vertikal gespiegelt darstellen (if-else)
+      //cout << text_2d[num_rows-cnt_rows][cnt_cols];
+
+      // Bild um 90° drehen (if-else)
+      int r_new = num_rows-cnt_cols;
+      int c_new = cnt_rows;
+      if(r_new<num_rows && c_new)
+      cout << text_2d[r_new][c_new];
+
       ++cnt_cols;
     }
     cout << endl;
     ++cnt_rows;
   }
-
-  // Bild um 90° drehen (if-else)
-
-  // Bild spiegelverkehr darstellen (if-else)
-  
 }

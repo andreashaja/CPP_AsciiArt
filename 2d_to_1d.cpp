@@ -8,8 +8,9 @@ int main ()
   // Zeilen und Spalten zählen
   int num_rows{0}, num_cols{0};
   string text_1d, line, filename_in, filename_out;
-  filename_in = "ascii-art-0-2d.txt";
-  filename_out = "ascii-art-0-1d.txt";
+  filename_in = "ascii-art-1-2d.txt";
+  filename_out = "ascii-art-1-1d.txt";
+
   fstream input_stream(filename_in, fstream::in);
   while( getline ( input_stream, line ) )
   {
@@ -23,8 +24,7 @@ int main ()
   fstream output_stream(filename_out, fstream::out);
   output_stream << num_rows << endl << num_cols << endl << text_1d;
 
-  // Dateie schließen
+  // Dateien schließen
   input_stream.close();
   output_stream.close();
-
 }
