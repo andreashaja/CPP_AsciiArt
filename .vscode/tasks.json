@@ -5,11 +5,12 @@
             "label": "My C/C++: clang++ build active file",
             "command": "clang++",
             "args": [
+                "-pedantic-errors",
                 "-g",
                 "${file}",
                 "-std=c++17",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${workspaceFolder}/binaries/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

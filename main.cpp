@@ -76,12 +76,6 @@ int main()
       // Bild vertikal gespiegelt darstellen (if-else)
       //cout << text_2d[num_rows-cnt_rows][cnt_cols];
 
-      // Bild um 90° drehen (if-else)
-      int r_new = num_rows-cnt_cols;
-      int c_new = cnt_rows;
-      if(r_new<num_rows && c_new)
-      cout << text_2d[r_new][c_new];
-
       ++cnt_cols;
     }
     cout << endl;
