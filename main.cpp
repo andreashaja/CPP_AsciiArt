@@ -66,8 +66,12 @@ int main()
     return 1;
   }
 
+  cout << "Datei " << filename << " wurde erfolgreich geladen.\n";
+
   // ENDE ABSCHNITT 1
   //////////////////////////////////
+
+  cout << "\nHINWEIS: Programm ist nur teilweise funktional. \nDiese Ausgabe bitte entfernen, sobald alle Übungen vollständig sind.\n";
 
   //////////////////////////////////
   // ABSCHNITT 2 : Darstellen und verändern des ASCII-Bildes

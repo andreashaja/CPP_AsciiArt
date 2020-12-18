@@ -73,7 +73,7 @@ Der einfachste Weg, den Code auszuführen und zu verändern, ist über die Onlin
 2. **Ausführen** :
 `./binaries/main
 
-*Hinweis:* Dateinamen für ASCII-Art können im Terminal im Format `./data/ascii-art-1.txt` eingegeben werden.
+*Hinweis:* Dateinamen für ASCII-Art können im Terminal im Format `./data/bunny-1d.txt` eingegeben werden.
 
 ### *Variante B* : Das Projekt auf der eigenen Festplatte starten
 

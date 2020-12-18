@@ -1,0 +1,2 @@
+language = "cpp"
+run = "g++ -std=c++17 -o binaries/main main.cpp; ./binaries/main"
