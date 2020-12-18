@@ -57,7 +57,7 @@ unzip solution.zip
 
 Nach dem Entpacken findest du im Ordner `solutions` die entpackte Quellcode-Datei mit den Lösungen.
 
-*Hinweis*: Das zugehörige Begleitheft inkl. der Links zu den Videos findest du [hier](https://go.tfe.academy/2012047).
+*Hinweis*: Das zugehörige Begleitheft inkl. der Links zu den Videos findest du [hier](https://go.tfe.academy/2012181).
 
 ---
 
