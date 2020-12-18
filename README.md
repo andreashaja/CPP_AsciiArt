@@ -71,7 +71,7 @@ Der einfachste Weg, den Code auszuführen und zu verändern, ist über die Onlin
 `g++ -std=c++17 -o binaries/main main.cpp`
 
 2. **Ausführen** :
-`./binaries/main
+`./binaries/main`
 
 *Hinweis:* Dateinamen für ASCII-Art können im Terminal im Format `./data/bunny-1d.txt` eingegeben werden.
 
