@@ -1,3 +1,17 @@
+/* ---------------------------------------------------------------------
+ * The Fearless Engineer - Programmieren und Elektronik
+ * Copyright (C) 2020, Dr. Andreas Haja.  
+ *
+ * Zweck : Übungsaufgaben zu ein- und zweidimensionalen Arrays
+ *
+ * Du solltest zusammen mit diesem Programm eine Kopie der MIT-Lizenz erhalten haben.
+ * Falls nicht, sieh bitte hier nach: https://opensource.org/licenses/MIT.
+ *
+ * Das Begleitheft zum Modul E3_M1 kann hier geladen werden:
+ * http://www.thefearlessengineer.com/cpp-kurs-e3
+ * ----------------------------------------------------------------------
+ */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -5,30 +19,34 @@ using namespace std;
 
 int main()
 {
-  // Text aus Datei einlesen (Anzahl Zeilen und Spalten, Text)
-  int num_rows{0}, num_cols{0}, num_chars{0};
-  int cnt_lines{0};
-  string line, text_1d;
+  //////////////////////////////////
+  // ABSCHNITT 1 : Einlesen der ASII-Art und Extrahieren der Daten
 
-  fstream input_stream("ascii-art-1-1d.txt", fstream::in);
+  // Text aus Datei einlesen (Anzahl Zeilen und Spalten, Text)
+  string line{}, text_1d{}, filename{};
+  cout << "Bitte Dateinamen für ASCII-Art angeben : ";
+  cin >> filename;
+  fstream input_stream(filename, fstream::in);
   if (!input_stream.is_open())
   {
     cout << "Fehler : Datei konnte nicht geöffnet werden" << endl;
     return 1;
   }
 
-  while (getline(input_stream, line))
+  // Anzahl Bildzeilen, Anzahl Bildspalten und Bildinhalt extrahieren
+  int num_rows{0}, num_cols{0}, num_chars{0};
+  int cnt_lines{0};
+  while (getline(input_stream, line)) // Zeile für Zeile über Datei laufen
   {
-    // aktuelle Zeile
-    if (cnt_lines == 0) // Anzahl Zeilen
+    if (cnt_lines == 0) // Annahme, dass Anzahl Bildzeilen in erster Zeile steht
     {
-      num_rows = stoi(line);
+      num_rows = stoi(line); // Zeichenkette in Integer konvertieren
     }
-    else if (cnt_lines == 1) // Anzahl Spalten
+    else if (cnt_lines == 1) // Annahme, dass Anzahl Bildspalten in erster Zeile steht
     {
       num_cols = stoi(line);
     }
-    else if (cnt_lines == 2) // Zeichen
+    else if (cnt_lines == 2) // Annahme, dass hinter Anzahl Zeilen und Spalten der Bildinhalt steht
     {
       text_1d = line;
     }
@@ -44,41 +62,40 @@ int main()
   // Eingelesene Daten auf Fehler prüfen
   if (num_rows == 0 || num_cols == 0 || text_1d.length() == 0)
   {
-    cout << "Fehler in Eingabedaten, bitte Datei überprüfen" << endl;
+    cout << "Fehler in Eingabedaten, bitte Dateiinhalt überprüfen" << endl;
     return 1;
   }
 
-  // Text in 2D-Array "einsortieren"
-  char text_2d[num_rows][num_cols];
-  int cnt_chars{0};
-  while (cnt_chars < text_1d.length())
-  {
-    int curr_row = cnt_chars / num_cols;
-    int curr_col = cnt_chars % num_cols;
-    //cout << "row = " << curr_row << ", col = " << curr_col << ", char = " << text_1d[cnt_chars] << endl;
-    text_2d[curr_row][curr_col] = text_1d[cnt_chars];
-    ++cnt_chars;
-  }
+  // ENDE ABSCHNITT 1
+  //////////////////////////////////
 
-  // Bild auf der Konsole ausgeben
-  int cnt_rows{0};
-  while (cnt_rows < num_rows)
-  {
-    int cnt_cols{0};
-    while (cnt_cols < num_cols)
-    {
-      // Bild normal ausgeben
-      //cout << text_2d[cnt_rows][cnt_cols];
+  //////////////////////////////////
+  // ABSCHNITT 2 : Darstellen und verändern des ASCII-Bildes
 
-      // Bild horizontal gespiegelt darstellen (if-else)
-      //cout << text_2d[cnt_rows][num_cols-cnt_cols];
+  //// AUFGABE 1 : Text in 2D-Array "einsortieren"
+  
+  //// a) Lege ein 2D-Array namens "text_2d" des Typs "char" an mit "num_rows" Zeilen und "num_cols" Spalten.
+  //// b) Stelle sicher, dass die Größe des Arrays ausreichend für das Bild ist. Falls nicht, beende das Programm mit einer Fehlermeldung.
+  //// c) Schreibe eine while-Schleife, die über alle Zeichen von "text_1d" läuft.
+  ////// d) Berechne für jedes Zeichen in "text_1d" die Zeilen- und Spaltenkoordinate im 2D-Arrays "text_2d".
+  ////// e) Schreibe an die berechnete Position in "text_2d" das jeweilige Zeichen aus "text_1d".
+  //// --> Am Ende der Schleife muss der Inhalt aus "text_1d" vollständig in "text_2d" übertragen sein.
+  
+  //// ENDE AUFGABE 1
 
-      // Bild vertikal gespiegelt darstellen (if-else)
-      //cout << text_2d[num_rows-cnt_rows][cnt_cols];
 
-      ++cnt_cols;
-    }
-    cout << endl;
-    ++cnt_rows;
-  }
+  //// AUFGABE 2 : ASCII-Art verändern und im Terminal ausgeben
+  
+  //// a) Schreibe eine äußere Schleife über alle Zeilen von "text_2d".
+  ////// b) Schreibe eine innere Schleife über alle Spalten von "text_2d".
+  ////// c1) Gib das jeweilige Zeichen von "text_2d" im Terminal aus.
+  ////// c2) Variante : Stelle das ASCII-Bild horizontal gespiegelt dar, indem du die Indizes anpasst.
+  ////// c3) Variante : Stelle das ASCII-Bild vertikal gespiegelt dar, indem du die Indizes anpasst.
+  //// d) Gib am Ende der inneren Schleife einen Zeilenumbruch aus.
+  //// --> Am Ende der beiden Schleifen muss das ASCII-Bild im Terminal sichtbar sein.
+  
+  //// ENDE AUFGABE 2
+
+  // ENDE ABSCHNITT 2
+  //////////////////////////////////
 }
