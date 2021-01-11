@@ -17,15 +17,23 @@
 #include <string>
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
   //////////////////////////////////
   // ABSCHNITT 1 : Einlesen der ASII-Art und Extrahieren der Daten
 
   // Text aus Datei einlesen (Anzahl Zeilen und Spalten, Text)
   string line{}, text_1d{}, filename{};
-  cout << "Bitte Dateinamen für ASCII-Art angeben : ";
-  cin >> filename;
+  cout << "HINWEIS: Im Verzeichnis 'data' sind einige Beispiele zu finden.\n";
+  if (argc == 1) // Falls kein Parameter übergeben wurde, Dateiname über Terminal einlesen
+  {
+    cout << "Bitte Dateinamen für ASCII-Art angeben : ";
+    cin >> filename;
+  }
+  else // Falls Parameter vorhanden, Dateiname übernehmen
+  {
+    filename = argv[1];
+  }
   fstream input_stream(filename, fstream::in);
   if (!input_stream.is_open())
   {
@@ -77,19 +85,19 @@ int main()
   // ABSCHNITT 2 : Darstellen und verändern des ASCII-Bildes
 
   //// AUFGABE 1 : Text in 2D-Array "einsortieren"
-  
-  //// a) Lege ein 2D-Array namens "text_2d" des Typs "char" an mit "num_rows" Zeilen und "num_cols" Spalten.
+
+  //// a) Lege ein 2D-Array namens "text_2d" des Typs "char" an, dass 200 Zeilen und 300 Spalten enthält.
+  ////    Beachte, dass die beiden Werte über die Konstanten "max_rows" und "max_cols" festgelegt werden sollen
   //// b) Stelle sicher, dass die Größe des Arrays ausreichend für das Bild ist. Falls nicht, beende das Programm mit einer Fehlermeldung.
   //// c) Schreibe eine while-Schleife, die über alle Zeichen von "text_1d" läuft.
   ////// d) Berechne für jedes Zeichen in "text_1d" die Zeilen- und Spaltenkoordinate im 2D-Arrays "text_2d".
   ////// e) Schreibe an die berechnete Position in "text_2d" das jeweilige Zeichen aus "text_1d".
   //// --> Am Ende der Schleife muss der Inhalt aus "text_1d" vollständig in "text_2d" übertragen sein.
-  
+
   //// ENDE AUFGABE 1
 
-
   //// AUFGABE 2 : ASCII-Art verändern und im Terminal ausgeben
-  
+
   //// a) Schreibe eine äußere Schleife über alle Zeilen von "text_2d".
   ////// b) Schreibe eine innere Schleife über alle Spalten von "text_2d".
   ////// c1) Gib das jeweilige Zeichen von "text_2d" im Terminal aus.
@@ -97,7 +105,7 @@ int main()
   ////// c3) Variante : Stelle das ASCII-Bild vertikal gespiegelt dar, indem du die Indizes anpasst.
   //// d) Gib am Ende der inneren Schleife einen Zeilenumbruch aus.
   //// --> Am Ende der beiden Schleifen muss das ASCII-Bild im Terminal sichtbar sein.
-  
+
   //// ENDE AUFGABE 2
 
   // ENDE ABSCHNITT 2
